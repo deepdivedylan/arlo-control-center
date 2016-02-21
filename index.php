@@ -27,19 +27,36 @@
 		</div>
 
 		<div class="container">
-			<form class="form-horizontal" ng-controller="MeowController">
+			<form class="form-horizontal" ng-controller="MeowController" ng-submit="meow(message, message.$valid);">
 				<div class="form-group">
-					<label class="control-label col-xs-2" for="channel">Channel</label>
+					<label class="control-label col-xs-2" for="channel">Channel*</label>
 					<div class="col-xs-10">
 						<select class="form-control" id="channel" name="channel">
-							<option ng-repeat="channel in channels" value="{{channel}}">#{{channel}}</option>
+							<option ng-repeat="channel in channels" value="{{channel}}" ng-model="message.channel"
+									  ng-required="true">#{{channel}}
+							</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-xs-2" for="message">Message</label>
+					<label class="control-label col-xs-2" for="message">Message*</label>
 					<div class="col-xs-10">
-						<textarea class="form-control" id="message" name="message" placeholder="Meow!" rows="5"></textarea>
+						<textarea class="form-control" id="message" name="message" placeholder="Meow!" rows="5"
+									 ng-model="message.message" ng-required="true"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-xs-2" for="link">Link</label>
+					<div class="col-xs-10">
+						<input type="text" class="form-control" id="link" name="link"
+								 placeholder="https://senator-arlo.bowtied.io/" ng-model="message.link" ng-required="false">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-xs-2" for="link-title">Link Title</label>
+					<div class="col-xs-10">
+						<input type="text" class="form-control" id="link-title" name="link-title"
+								 placeholder="Back Paws for Bernie!" ng-model="message.link-title" ng-required="false">
 					</div>
 				</div>
 				<div class="form-group">
