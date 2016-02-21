@@ -11,6 +11,10 @@
 				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"/>
 		<link rel="stylesheet" href="css/style.css"/>
 		<script src="angular/app.js"></script>
+		<script src="angular/controllers/login-controller.js"></script>
+		<script src="angular/controllers/meow-controller.js"></script>
+		<script src="angular/services/login-service.js"></script>
+		<script src="angular/services/meow-service.js"></script>
 	</head>
 
 	<body>
