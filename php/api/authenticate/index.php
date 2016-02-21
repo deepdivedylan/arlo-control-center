@@ -1,8 +1,6 @@
 <?php
 require_once(dirname(__DIR__, 2) . "/lib/xsrf.php");
-
-// Tomcat endpoint to POST to
-$ADJSON_ENDPOINT = "http://localhost:8080/adjson/aduser/";
+require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 // Red Alert! All officers to the bridge!
 $BRIDGE = ["dmcdonald21", "rlewis37", "srexroad"];
@@ -18,6 +16,9 @@ $reply->status = 200;
 $reply->message = null;
 
 try {
+	// read the encrypted config
+	$config = readConfig("/etc/apache2/capstone-mysql/arlo-control-center.ini");
+
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
@@ -45,7 +46,7 @@ try {
 			)
 		);
 		$context = stream_context_create($options);
-		$jsonString = file_get_contents($ADJSON_ENDPOINT, false, $context);
+		$jsonString = file_get_contents($config["tomcat"], false, $context);
 
 		// convert the JSON reply to an object and interpret the results
 		$tomcatReply = json_decode($jsonString);
