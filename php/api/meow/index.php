@@ -29,6 +29,35 @@ try {
 		unset($reply->message);
 	} else if($method === "POST") {
 		verifyXsrf();
+		$requestContent = file_get_contents("php://input");
+		$requestObject = json_decode($requestContent);
+
+		// if they're not logged in, buzz off!
+		if(empty($_SESSION["adUser"]) === true || (time() - $_SESSION["adUser"]["loginTime"]) > 3600) {
+			throw(new RuntimeException("not logged in", 401));
+		}
+
+		// if they're logged in, update their login time
+		$_SESSION["adUser"]["loginTime"] = time();
+
+		// sanitize inputs
+		if(in_array($requestObject->channel, array_keys(get_object_vars($channels))) === false) {
+			throw(new RuntimeException("no valid channel selected", 418));
+		}
+		$message = filter_var($requestObject->message, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+		// post the actual message
+		$post = http_build_query(["payload" => json_encode(["text" => $message])]);
+		$options = [
+			"http" => [
+				"method" => "POST",
+				"header" => "Content-type: application/x-www-form-urlencoded",
+				"content" => $post
+			]
+		];
+		$context = stream_context_create($options);
+		$url = $channels->{$requestObject->channel};
+		$reply->message = file_get_contents($url, false, $context);
 	} else {
 		throw(new RuntimeException("method $method not allowed", 405));
 	}
