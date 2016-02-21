@@ -15,6 +15,8 @@
 		<script src="angular/controllers/meow-controller.js"></script>
 		<script src="angular/services/login-service.js"></script>
 		<script src="angular/services/meow-service.js"></script>
+
+		<title>Arlo Control Center</title>
 	</head>
 
 	<body>
