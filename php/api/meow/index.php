@@ -52,9 +52,12 @@ try {
 		$messageData = new stdClass();
 		$messageData->text = $message;
 		if(empty($link) === false && empty($linkTitle) === false) {
+			$linkContent = file_get_contents($link);
+			$titleTag = preg_match("/<title>(.*)<\/title>/m", $linkContent, $matches);
 			$attachments = new stdClass();
 			$attachments->title = $linkTitle;
 			$attachments->title_link = $link;
+			$attachments->text = $matches[1] ?? $linkTitle;
 			$messageData->attachments = [$attachments];
 		}
 
