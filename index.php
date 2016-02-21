@@ -25,14 +25,12 @@
 		</div>
 
 		<div class="container">
-			<form class="form-horizontal" action="#">
+			<form class="form-horizontal" ng-controller="MeowController">
 				<div class="form-group">
 					<label class="control-label col-xs-2" for="channel">Channel</label>
 					<div class="col-xs-10">
 						<select class="form-control" id="channel" name="channel">
-							<option value="">Please Select</option>
-							<option value="bridge">#bridge</option>
-							<option value="cnmstemuluscenter">#cnmstemuluscenter</option>
+							<option ng-repeat="channel in channels" value="{{channel}}">#{{channel}}</option>
 						</select>
 					</div>
 				</div>
