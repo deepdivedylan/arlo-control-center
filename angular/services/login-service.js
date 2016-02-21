@@ -5,6 +5,6 @@ app.service("LoginService", function($http) {
 		return ($http.post(this.LOGIN_ENDPOINT, loginData)
 			.then(function(reply) {
 				return (reply.data);
-			}))
-	}
+			}));
+	};
 });
