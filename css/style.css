@@ -1,0 +1,34 @@
+/* EVERYTHING IN HERE IS VERY !IMPORTANT */
+
+* {
+	font-family: monospace !important;
+	background-color: black !important;
+	color: limegreen !important;
+	text-shadow: 0 0 15px limegreen !important;
+	border-color: limegreen !important;
+	border-radius: 0 !important;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	color:    limegreen !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color:    limegreen !important;
+	opacity:  1 !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color:    limegreen !important;
+	opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color:    limegreen !important;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+	color:    limegreen !important;
+}
+
+select {
+	-webkit-appearance: none !important;
+	-moz-appearance: none !important;
+	appearance: none !important;
+}
