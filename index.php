@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ArloControlCenter">
 
 	<head>
 		<script data-require="angular.js@1" data-semver="1.5.0-rc.0"
