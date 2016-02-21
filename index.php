@@ -2,11 +2,14 @@
 <html>
 
 	<head>
-		<script data-require="angular.js@1" data-semver="1.5.0-rc.0" src="https://code.angularjs.org/1.5.0-rc.0/angular.js"></script>
-		<script data-require="ui-bootstrap@*" data-semver="1.1.1" src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-1.1.1.js"></script>
-		<link data-require="bootstrap-css@*" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
-		<link rel="stylesheet" href="style.css" />
-		<script src="script.js"></script>
+		<script data-require="angular.js@1" data-semver="1.5.0-rc.0"
+				  src="//code.angularjs.org/1.5.0-rc.0/angular.js"></script>
+		<script data-require="ui-bootstrap@*" data-semver="1.1.1"
+				  src="//cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-1.1.1.js"></script>
+		<link data-require="bootstrap-css@*" data-semver="3.3.6" rel="stylesheet"
+				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"/>
+		<link rel="stylesheet" href="css/style.css"/>
+		<!--		<script src="script.js"></script>-->
 	</head>
 
 	<body>
