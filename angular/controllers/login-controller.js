@@ -1,12 +1,14 @@
-app.controller("LoginController", ["$scope", "LoginService", function($scope, LoginService) {
+app.controller("LoginController", ["$scope", "$window", "LoginService", function($scope, $window, LoginService) {
 	$scope.alerts = [];
+	$scope.loginData = {};
 
 	$scope.login = function(loginData, validated) {
 		if(validated === true) {
+			console.log("valid?");
 			LoginService.login(loginData)
 				.then(function(result) {
 					if(result.data.status === 200) {
-						$scope.alerts[0] = {type: "success", msg: result.data.message};
+						$window.location.reload();
 					} else {
 						$scope.alerts[0] = {type: "danger", msg: result.data.message};
 					}

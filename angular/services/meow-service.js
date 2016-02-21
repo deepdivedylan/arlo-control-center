@@ -4,7 +4,7 @@ app.service("MeowService", function($http) {
 	this.meow = function(meow) {
 		return ($http.post(this.MEOW_ENDPOINT, meow)
 			.then(function(reply) {
-				return (reply.data);
+				return (reply);
 			}));
 	};
 

@@ -2,32 +2,56 @@
 <html ng-app="ArloControlCenter">
 
 	<head>
-		<script data-require="angular.js@1" data-semver="1.5.0-rc.0"
-				  src="//code.angularjs.org/1.5.0-rc.0/angular.js"></script>
-		<script data-require="ui-bootstrap@*" data-semver="1.1.1"
-				  src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
+		<script src="//code.angularjs.org/1.5.0/angular.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
 
-		<link data-require="bootstrap-css@*" data-semver="3.3.6" rel="stylesheet"
-				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"/>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"/>
 		<link rel="stylesheet" href="css/style.css"/>
 		<script src="angular/app.js"></script>
-		<script src="angular/controllers/login-controller.js"></script>
-		<script src="angular/controllers/meow-controller.js"></script>
 		<script src="angular/services/login-service.js"></script>
 		<script src="angular/services/meow-service.js"></script>
+		<script src="angular/controllers/login-controller.js"></script>
+		<script src="angular/controllers/meow-controller.js"></script>
 
 		<title>Arlo Control Center</title>
 	</head>
 
 	<body>
+		<?php if(empty($_SESSION["adUser"]) === true) {?>
+		<main class="container">
+			<h1>Login</h1>
+			<form name="loginForm" class="form-horizontal" ng-controller="LoginController" ng-submit="login(loginData, loginForm.$valid);">
+				<div class="form-group">
+					<label class="control-label col-xs-2" for="username">Username</label>
+					<div class="col-xs-10">
+						<input type="text" class="form-control" id="username" name="username"
+							placeholder="myCNM Username" ng-model="loginData.username" ng-required="true">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-xs-2" for="password">Password</label>
+					<div class="col-xs-10">
+						<input type="password" class="form-control" id="password" name="password"
+							   placeholder="myCNM Password" ng-model="loginData.password" ng-required="true">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-10 col-xs-offset-2">
+						<button type="submit" class="btn">Engage!</button>
+						<button type="reset" class="btn">Abandon Ship!</button>
+					</div>
+				</div>
+			</form>
+		</main>
+		<?php } else { ?>
 		<div class="jumbotron">
 			<div class="container">
 				<h1 class="text-center">Arlo Control Center <span>&block;</span></h1>
 			</div>
 		</div>
 
-		<div class="container">
-			<form class="form-horizontal" ng-controller="MeowController" ng-submit="meow(message, message.$valid);">
+		<main class="container">
+			<form name="meowForm" class="form-horizontal" ng-controller="MeowController" ng-submit="meow(message, meowForm.$valid);">
 				<div class="form-group">
 					<label class="control-label col-xs-2" for="channel">Channel*</label>
 					<div class="col-xs-10">
@@ -53,20 +77,22 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-xs-2" for="link-title">Link Title</label>
+					<label class="control-label col-xs-2" for="linkTitle">Link Title</label>
 					<div class="col-xs-10">
-						<input type="text" class="form-control" id="link-title" name="link-title"
-								 placeholder="Back Paws for Bernie!" ng-model="message.link-title" ng-required="false">
+						<input type="text" class="form-control" id="linkTitle" name="linkTitle"
+								 placeholder="Back Paws for Bernie!" ng-model="message.linkTitle" ng-required="false">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label sr-only" for="message">Message</label>
 					<div class="col-xs-10 col-xs-offset-2">
 						<button type="submit" class="btn">Engage!</button>
+						<button type="reset" class="btn">Abandon Ship!</button>
 					</div>
 				</div>
 			</form>
-		</div>
+		</main>
+		<?php } ?>
 	</body>
 
 </html>
