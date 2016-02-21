@@ -1,5 +1,5 @@
 app.service("MeowService", function($http) {
-	this.MEOW_ENDPOINT = "../../php/api/meow/";
+	this.MEOW_ENDPOINT = "php/api/meow/";
 
 	this.meow = function(meow) {
 		return ($http.post(this.MEOW_ENDPOINT, meow)
@@ -9,6 +9,6 @@ app.service("MeowService", function($http) {
 	};
 
 	this.getChannels = function() {
-		return ($http.get(MEOW_ENDPOINT));
+		return ($http.get(this.MEOW_ENDPOINT));
 	};
 });
