@@ -9,7 +9,7 @@
 		<link data-require="bootstrap-css@*" data-semver="3.3.6" rel="stylesheet"
 				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"/>
 		<link rel="stylesheet" href="css/style.css"/>
-		<!--		<script src="script.js"></script>-->
+		<script src="angular/app.js"></script>
 	</head>
 
 	<body>
