@@ -43,7 +43,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 				<div class="form-group">
 					<div class="col-xs-10 col-xs-offset-2">
 						<button type="submit" class="btn">Engage!</button>
-						<button type="reset" class="btn">Abandon Ship!</button>
+						<button type="reset" class="btn" ng-click="reset();">Abandon Ship!</button>
 					</div>
 				</div>
 			</form>
@@ -93,13 +93,11 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 					<label class="control-label sr-only" for="message">Message</label>
 					<div class="col-xs-10 col-xs-offset-2">
 						<button type="submit" class="btn">Engage!</button>
-						<button type="reset" class="btn">Abandon Ship!</button>
+						<button type="reset" class="btn" ng-click="reset();">Abandon Ship!</button>
 					</div>
 				</div>
-				<pre>{{ messageData | json }}</pre>
 			</form>
 		</main>
 		<?php } ?>
 	</body>
-
 </html>

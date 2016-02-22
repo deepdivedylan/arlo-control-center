@@ -14,4 +14,8 @@ app.controller("LoginController", ["$scope", "$window", "LoginService", function
 				});
 		}
 	};
+
+	$scope.reset = function() {
+		$scope.loginData = {};
+	};
 }]);

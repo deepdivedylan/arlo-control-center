@@ -16,11 +16,16 @@ app.controller("MeowController", ["$scope", "MeowService", function($scope, Meow
 				.then(function(result) {
 					if(result.data.status === 200) {
 						$scope.alerts[0] = {type: "success", msg: result.data.message};
+						$scope.reset();
 					} else {
 						$scope.alerts[0] = {type: "danger", msg: result.data.message};
 					}
 				});
 		}
+	};
+
+	$scope.reset = function() {
+		$scope.messageData = {};
 	};
 
 	if($scope.channels.length === 0) {

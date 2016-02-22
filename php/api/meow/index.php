@@ -49,7 +49,7 @@ try {
 		// build the message
 		$messageData = new stdClass();
 		$messageData->text = $message;
-		if(empty($link) === false && empty($linkTitle) === false) {
+		if(empty($requestObject->link) === false && empty($requestObject->linkTitle) === false) {
 			$link = filter_var($requestObject->link, FILTER_SANITIZE_URL);
 			$linkTitle = filter_var($requestObject->linkTitle, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
 			$linkContent = file_get_contents($link);
