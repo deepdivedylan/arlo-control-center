@@ -52,7 +52,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 		<?php } else { ?>
 		<div class="jumbotron">
 			<div class="container">
-				<h1 class="text-center">Arlo Control Center <span>&block;</span></h1>
+				<h1 class="text-center">Arlo Control Center <span class="blink">&block;</span></h1>
 			</div>
 		</div>
 

@@ -10,25 +10,46 @@
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-	color:    limegreen !important;
+	color: limegreen !important;
 }
+
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-	color:    limegreen !important;
-	opacity:  1 !important;
+	color: limegreen !important;
+	opacity: 1 !important;
 }
+
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-	color:    limegreen !important;
-	opacity:  1;
+	color: limegreen !important;
+	opacity: 1;
 }
+
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-	color:    limegreen !important;
+	color: limegreen !important;
 }
+
 :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
-	color:    limegreen !important;
+	color: limegreen !important;
 }
 
 select {
 	-webkit-appearance: none !important;
 	-moz-appearance: none !important;
 	appearance: none !important;
+}
+
+.blink {
+	animation-duration: 0.5s;
+	animation-name: blink;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+@keyframes blink {
+	from {
+		opacity: 1 !important;
+	}
+
+	to {
+		opacity: 0 !important;
+	}
 }
