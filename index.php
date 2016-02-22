@@ -23,9 +23,9 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 
 	<body>
 		<?php if(empty($_SESSION["adUser"]) === true) {?>
-		<main class="container">
+		<main class="container" ng-controller="LoginController">
 			<h1>Login</h1>
-			<form name="loginForm" class="form-horizontal" novalidate ng-controller="LoginController" ng-submit="login(loginData, loginForm.$valid);">
+			<form name="loginForm" class="form-horizontal" novalidate ng-submit="login(loginData, loginForm.$valid);">
 				<div class="form-group">
 					<label class="control-label col-xs-2" for="username">Username</label>
 					<div class="col-xs-10">
@@ -47,6 +47,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 					</div>
 				</div>
 			</form>
+			<uib-alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alerts.length = 0;">{{ alert.msg }}</uib-alert>
 		</main>
 		<?php } else { ?>
 		<div class="jumbotron">
@@ -55,8 +56,8 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 			</div>
 		</div>
 
-		<main class="container">
-			<form name="meowForm" class="form-horizontal" novalidate ng-controller="MeowController" ng-submit="meow(messageData, meowForm.$valid);">
+		<main class="container" ng-controller="MeowController">
+			<form name="meowForm" class="form-horizontal" novalidate ng-submit="meow(messageData, meowForm.$valid);">
 				<div class="form-group">
 					<label class="control-label col-xs-2" for="channel">Channel*</label>
 					<div class="col-xs-10">
@@ -97,6 +98,7 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 					</div>
 				</div>
 			</form>
+			<uib-alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alerts.length = 0;">{{ alert.msg }}</uib-alert>
 		</main>
 		<?php } ?>
 	</body>
