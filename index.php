@@ -1,3 +1,8 @@
+<?php
+if(session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+}
+?>
 <!DOCTYPE html>
 <html ng-app="ArloControlCenter">
 
@@ -20,7 +25,7 @@
 		<?php if(empty($_SESSION["adUser"]) === true) {?>
 		<main class="container">
 			<h1>Login</h1>
-			<form name="loginForm" class="form-horizontal" ng-controller="LoginController" ng-submit="login(loginData, loginForm.$valid);">
+			<form name="loginForm" class="form-horizontal" novalidate ng-controller="LoginController" ng-submit="login(loginData, loginForm.$valid);">
 				<div class="form-group">
 					<label class="control-label col-xs-2" for="username">Username</label>
 					<div class="col-xs-10">
@@ -51,12 +56,13 @@
 		</div>
 
 		<main class="container">
-			<form name="meowForm" class="form-horizontal" ng-controller="MeowController" ng-submit="meow(message, meowForm.$valid);">
+			<form name="meowForm" class="form-horizontal" novalidate ng-controller="MeowController" ng-submit="meow(messageData, meowForm.$valid);">
 				<div class="form-group">
 					<label class="control-label col-xs-2" for="channel">Channel*</label>
 					<div class="col-xs-10">
-						<select class="form-control" id="channel" name="channel">
-							<option ng-repeat="channel in channels" value="{{channel}}" ng-model="message.channel"
+						<select class="form-control" id="channel" name="channel" ng-model="messageData.channel">
+							<option value="">&mdash;Open A Channel&mdash;</option>
+							<option ng-repeat="channel in channels" value="{{channel}}"
 									  ng-required="true">#{{channel}}
 							</option>
 						</select>
@@ -66,21 +72,21 @@
 					<label class="control-label col-xs-2" for="message">Message*</label>
 					<div class="col-xs-10">
 						<textarea class="form-control" id="message" name="message" placeholder="Meow!" rows="5"
-									 ng-model="message.message" ng-required="true"></textarea>
+									 ng-model="messageData.message" ng-required="true"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-2" for="link">Link</label>
 					<div class="col-xs-10">
 						<input type="text" class="form-control" id="link" name="link"
-								 placeholder="https://senator-arlo.bowtied.io/" ng-model="message.link" ng-required="false">
+								 placeholder="https://senator-arlo.bowtied.io/" ng-model="messageData.link" ng-required="false">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-2" for="linkTitle">Link Title</label>
 					<div class="col-xs-10">
 						<input type="text" class="form-control" id="linkTitle" name="linkTitle"
-								 placeholder="Back Paws for Bernie!" ng-model="message.linkTitle" ng-required="false">
+								 placeholder="Back Paws for Bernie!" ng-model="messageData.linkTitle" ng-required="false">
 					</div>
 				</div>
 				<div class="form-group">
@@ -90,6 +96,7 @@
 						<button type="reset" class="btn">Abandon Ship!</button>
 					</div>
 				</div>
+				<pre>{{ messageData | json }}</pre>
 			</form>
 		</main>
 		<?php } ?>

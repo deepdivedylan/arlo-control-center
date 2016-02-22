@@ -1,6 +1,6 @@
 app.controller("MeowController", ["$scope", "MeowService", function($scope, MeowService) {
 	$scope.channels = [];
-	$scope.message = {};
+	$scope.messageData = {};
 	$scope.alerts = [];
 
 	$scope.getChannels = function() {
@@ -10,9 +10,9 @@ app.controller("MeowController", ["$scope", "MeowService", function($scope, Meow
 			});
 	};
 
-	$scope.meow = function(message, validated) {
+	$scope.meow = function(messageData, validated) {
 		if(validated === true) {
-			MeowService.meow(message)
+			MeowService.meow(messageData)
 				.then(function(result) {
 					if(result.data.status === 200) {
 						$scope.alerts[0] = {type: "success", msg: result.data.message};

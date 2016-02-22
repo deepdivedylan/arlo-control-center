@@ -4,7 +4,6 @@ app.controller("LoginController", ["$scope", "$window", "LoginService", function
 
 	$scope.login = function(loginData, validated) {
 		if(validated === true) {
-			console.log("valid?");
 			LoginService.login(loginData)
 				.then(function(result) {
 					if(result.data.status === 200) {

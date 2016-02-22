@@ -45,13 +45,13 @@ try {
 			throw(new RuntimeException("no valid channel selected", 418));
 		}
 		$message = filter_var($requestObject->message, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
-		$link = filter_var($requestObject->link, FILTER_SANITIZE_URL);
-		$linkTitle = filter_var($requestObject->linkTitle, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 		// build the message
 		$messageData = new stdClass();
 		$messageData->text = $message;
 		if(empty($link) === false && empty($linkTitle) === false) {
+			$link = filter_var($requestObject->link, FILTER_SANITIZE_URL);
+			$linkTitle = filter_var($requestObject->linkTitle, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
 			$linkContent = file_get_contents($link);
 			$titleTag = preg_match("/<title>(.*)<\/title>/m", $linkContent, $matches);
 			$attachments = new stdClass();
