@@ -7,8 +7,8 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 <html ng-app="ArloControlCenter">
 
 	<head>
-		<script src="//code.angularjs.org/1.5.0/angular.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
+		<script src="//code.angularjs.org/1.5.5/angular.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.2/ui-bootstrap-tpls.min.js"></script>
 
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"/>
 		<link rel="stylesheet" href="css/style.css"/>
@@ -22,7 +22,11 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 	</head>
 
 	<body>
-		<?php if(empty($_SESSION["adUser"]) === true) {?>
+		<?php
+			// Red Alert! All officers to the bridge!
+			$BRIDGE = ["dmcdonald21", "rlewis37", "srexroad"];
+			if(empty($_SESSION["adUser"]) === true || in_array($_SESSION["adUser"]["username"], $BRIDGE) === false) {
+		?>
 		<main class="container" ng-controller="LoginController">
 			<h1>Login</h1>
 			<form name="loginForm" class="form-horizontal" novalidate ng-submit="login(loginData, loginForm.$valid);">
