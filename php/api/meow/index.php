@@ -2,6 +2,9 @@
 require_once(dirname(__DIR__, 2) . "/lib/xsrf.php");
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 
+// Red Alert! All officers to the bridge!
+$BRIDGE = ["dmcdonald21", "rlewis37", "srexroad"];
+
 //verify the xsrf challenge
 if(session_status() !== PHP_SESSION_ACTIVE) {
 	session_start();
@@ -21,6 +24,12 @@ try {
 
 	// grab the available channels
 	$channels = json_decode($config["channels"]);
+
+	// if a non bridge officer attempts to login, get rid of them
+	$username = $_SESSION["adUser"]["username"];
+	if(empty($username) === true || in_array($username, $BRIDGE) === false) {
+		throw(new RuntimeException("Invalid username/password", 401));
+	}
 
 	// build an array of all channels on a GET
 	if($method === "GET") {
